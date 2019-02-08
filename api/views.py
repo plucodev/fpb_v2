@@ -18,6 +18,23 @@ class ProvidersView(APIView):
             serializer = ProviderSerializer(providers, many=True)
             return Response(serializer.data)
             
+    def post(self, request):
+                
+            serializer = ProviderSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+            
+    def delete(self, request, provider_id):
+        
+        provider = Provider.objects.get(id=provider_id)
+        provider.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
+            
 class ProceduresView(APIView):
     def get(self, request, procedure_id=None):
 
@@ -29,6 +46,23 @@ class ProceduresView(APIView):
             procedures = Procedure.objects.all()
             serializer = ProcedureSerializer(procedures, many=True)
             return Response(serializer.data)
+            
+    def post(self, request):
+                
+            serializer = ProcedureSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+            
+    def delete(self, request, procedure_id):
+        
+        procedure = Procedure.objects.get(id=procedure_id)
+        procedure.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
             
 class LocationsView(APIView):
     def get(self, request, location_id=None):
@@ -42,6 +76,23 @@ class LocationsView(APIView):
             serializer = LocationSerializer(locations, many=True)
             return Response(serializer.data)
             
+    def post(self, request):
+                
+            serializer = LocationSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+            
+    def delete(self, request, location_id):
+        
+        location = Location.objects.get(id=location_id)
+        location.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
+            
 class Procedure_LocationsView(APIView):
     def get(self, request, procedure_Location_id=None):
 
@@ -53,6 +104,23 @@ class Procedure_LocationsView(APIView):
             procedure_Locations = Procedure_Location.objects.all()
             serializer = Procedure_LocationSerializer(procedure_Locations, many=True)
             return Response(serializer.data)
+            
+    def post(self, request):
+                
+            serializer = Procedure_LocationSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+            
+    def delete(self, request, procedure_Location_id):
+        
+        procedure_Location = Procedure_Location.objects.get(id=procedure_Location_id)
+        procedure_Location.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
         
 class ContactsView(APIView):
     def get(self, request, contact_id=None):

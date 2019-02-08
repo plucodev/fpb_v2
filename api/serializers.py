@@ -13,18 +13,18 @@ class ProcedureSerializer(serializers.ModelSerializer):
         
         
 class LocationSerializer(serializers.ModelSerializer):
-    procedure = ProcedureSerializer(read_only=True, many=True)
+    # procedure = ProcedureSerializer(read_only=True, many=True)
     class Meta:
         model = Location
         exclude = ()
-        fields = ('id', 'address', 'procedure')
+        # fields = ('id', 'address', 'procedure')
         
 class ProviderSerializer(serializers.ModelSerializer):
-    location = LocationSerializer(read_only=True, many=True)
+    # location = LocationSerializer(read_only=True, many=True)
     class Meta:
         model = Provider
         exclude = ()
-        fields = ('id', 'name', 'location')
+        # fields = ('id', 'name', 'location')
         
 class Procedure_LocationSerializer(serializers.ModelSerializer):
     
